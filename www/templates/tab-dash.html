@@ -1,0 +1,87 @@
+<ion-view class = "my-view" view-title="Casterly Rock">
+
+  <!-- The nav bar that will be updated as we navigate -->
+  <ion-nav-bar class="bar-positive">
+  </ion-nav-bar>
+
+  <ion-content class="padding">
+    <h3 class="welcome">Chores</h3>
+
+    <ion-list  ng-controller="swipeCtrl"
+               show-delete="shouldShowDelete"
+               show-reorder="shouldShowReorder"
+               can-swipe="listCanSwipe">
+      <a>Your Share</a> <a>Points</a>
+
+      <ion-checkbox ng-model="filter.blue">Check the Mailbox</ion-checkbox>
+      <ion-checkbox ng-model="filter.yellow">Clean the Toilet</ion-checkbox>
+
+
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="item in list">
+
+
+          <h3>{{item.name}}</h3>
+          <p> {{item.lastText}} </p>
+
+
+        <ion-option-button class="button-positive"
+                           ng-click="share(item)">
+          Pic
+        </ion-option-button>
+        <ion-option-button class="button-assertive"
+                           ng-click="edit(item)">
+          Edit
+        </ion-option-button>
+
+
+      </ion-item>
+    </ion-list>
+
+    <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+
+
+
+    <a>Review</a>     <a>All</a>
+    <div class="list">
+      <a class="item item-thumbnail-right" href="#">
+        <img src="IMG_0537.JPG">
+        <h2>Pretty Hate Machine</h2>
+        <p>Nine Inch Nails</p>
+      </a>
+      <a class="item item-thumbnail-right" href="#">
+        <img src="IMG_0537.JPG">
+        <h2>Pretty Hate Machine</h2>
+        <p>Nine Inch Nails</p>
+      </a>
+    </div>
+    <div id="AddShare">
+      <h3>Add Share</h3>
+
+        <button ng-click="openPopover($event)" ng-controller="PopCtrl">Add to list</button>
+      <button ng-click="takePhoto()" ng-controller="CamCtrl">Open Cam</button>
+      <button ng-click="choosePhoto()" ng-controller="CamCtrl">
+        Choose Photo
+      </button>
+
+    </div>
+  </ion-content>
+
+</ion-view>
+<script id="my-popover.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-header-bar>
+      <h1 class="title">My Popover Title</h1>
+    </ion-header-bar>
+    <ion-content ng-conroller = "CamCtrl">
+      <div class = "list card">
+          <div class="item item-image">
+              <img ng-src = "{{pictureUrl}}">
+          </div>
+      </div>
+      <div class="padding">
+        <button ng-click = "takePicture()" class = "button button-block button-calm">Take Picture</button>
+      </div>
+    </ion-content>
+  </ion-popover-view>
+</script>
